@@ -1,0 +1,225 @@
+<!-- BEGIN: Subheader -->
+<div class="m-subheader ">
+  <div class="d-flex align-items-center">
+    <div class="mr-auto">
+      <h3 class="m-subheader__title">{{section}}</h3>
+    </div>
+      <a class="btn m-btn--pill btn-info" href="https://proguardvpn.com/wp-admin/users.php" target="_blank">Manage users</a>
+  </div>
+</div>
+<!-- END: Subheader -->
+
+<div class="m-content">
+  <!-- Begin:: STATUS MESSAGE BOX -->
+
+  {{#if statusMsg}}
+  <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-dismissible m--margin-bottom-30"
+    role="alert">
+    <div class="m-alert__icon">
+      <i class="flaticon-exclamation m--font-brand"></i>
+    </div>
+    <div class="m-alert__text">
+      {{statusMsg}}
+    </div>
+  </div>
+  {{/if}}
+
+  <!-- End:: STATUS MESSAGE BOX -->
+
+  {{#each relayList}}
+  <div class="m-portlet m-portlet--full-height ">
+    <div class="m-portlet__body">
+      <div class="tab-content">
+        <div class="tab-pane active" id="m_widget4_tab1_content">
+          <div class="m-widget4 m-widget4--progress">
+            <div class="m-widget4__item">
+              <div class="m-widget4__img m-widget4__img--pic">
+                {{#if @first}}
+                <img src="/assets/own/img/fail.svg" alt="">
+                {{else}}
+                <img src="/assets/own/img/success.svg" alt="">
+                {{/if}}
+              </div>
+              <div class="m-widget4__info">
+                <span class="m-widget4__title">
+                  {{this.country}} > {{this.city}}
+                </span><br>
+                <span class="m-widget4__sub">
+                  Endpoint: {{this.address}} - Address Space: {{this.gateway}}
+                </span>
+              </div>
+              <div class="m-widget4__progress">
+                <div class="m-widget4__progress-wrapper">
+                </div>
+              </div>
+              <div class="m-widget4__ext">
+                <a href="http://172.104.146.177:8000/" target="_blank" class="m-btn m-btn--hover-brand m-btn--pill btn btn-sm btn-secondary">Restart</a>
+              </div>
+              <div class="m-widget4__ext">
+                <a href="http://172.104.146.177:8000/" target="_blank" class="m-btn m-btn--hover-brand m-btn--pill btn btn-sm btn-secondary">Stop</a>
+              </div>
+              <div class="m-widget4__ext">
+                <a href="#" class="m-btn m-btn--hover-brand m-btn--pill btn btn-sm btn-secondary" data-toggle="modal" data-target="#m_modal_4">Details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+
+  <div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Server info</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table">
+            <!--begin::Thead-->
+            <thead>
+              <tr>
+                <td class="m-widget11__label">Status</td>
+                <td class="m-widget11__app">Address</td>
+                <td class="m-widget11__sales">Received</td>
+                <td class="m-widget11__price">Transmitted</td>
+                <td class="m-widget11__total m--align-right">Last Connection</td>
+              </tr>
+            </thead>
+            <!--end::Thead-->
+            <!--begin::Tbody-->
+            <tbody>
+              {{#each peers}}
+              <tr>
+                <td>
+                  {{#if @first}}
+                  <span class="m-badge m-badge--danger m-badge--wide">Inactive</span>
+                  {{else}}
+                  <span class="m-badge m-badge--success m-badge--wide">Active</span>
+                  {{/if}}
+                </td>
+                <td>
+                  <span class="m-widget11__title">{{this.address}}</span>
+                </td>
+                <td>{{this.rx}}</td>
+                <td>{{this.tx}}</td>
+                <td class="m--align-right m--font-brand">{{this.last_handshake}}</td>
+              </tr>
+              {{/each}}              
+            </tbody>
+            <!--end::Tbody-->
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{#each relayList}}
+  <div class="m-portlet m-portlet--head-sm m-portlet--collapse" m-portlet="true" id="m_portlet_tools_7">
+    <div class="m-portlet__head">
+      <div class="m-portlet__head-caption">
+        <div class="m-portlet__head-title">
+          <span class="m-portlet__head-icon">
+            {{#if @first}}
+            <img class="server-status-icon" src="/assets/own/img/fail.svg">
+            {{else}}
+            <img class="server-status-icon" src="/assets/own/img/success.svg">
+            {{/if}}
+          </span>
+            <p class="m-portlet__head-text">
+              {{this.country}} > {{this.city}}
+              <span class="server-subtitle">
+                ({{this.address}})
+              </span>
+            </p>
+
+
+        </div>
+      </div>
+      <div class="m-portlet__head-tools">
+        <ul class="m-portlet__nav">
+          <li class="m-portlet__nav-item">
+            <a href="http://172.104.146.177:8000/" target="_blank" class="m-portlet__nav-link m-btn m-btn--hover-brand m-btn--pill btn btn-sm btn-secondary"
+              aria-describedby="tooltip_oreb6x6nbg">
+              <i class="la la-refresh"></i>
+              Restart
+            </a>
+          </li>
+          <li class="m-portlet__nav-item">
+            <a href="http://172.104.146.177:8000/" target="_blank" class="m-portlet__nav-link m-btn m-btn--hover-brand m-btn--pill btn btn-sm btn-secondary"
+              aria-describedby="tooltip_oreb6x6nbg">
+              <i class="la la-hand-stop-o"></i>
+              Stop
+            </a>
+          </li>
+          <li class="m-portlet__nav-item">
+            <a href="#" m-portlet-tool="toggle"
+              class="m-portlet__nav-link m-btn m-btn--hover-brand m-btn--pill btn btn-sm btn-secondary"
+              aria-describedby="tooltip_oreb6x6nbg">
+              <i class="la la-angle-down"></i>
+              Details
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="m-portlet__body" m-hidden-height="344"
+      style="display: none; overflow: hidden; padding-top: 0px; padding-bottom: 0px;">
+      <div class="m-scrollable m-scroller ps" data-scrollbar-shown="true" data-scrollable="true" data-height="400"
+        style="overflow:hidden; height: 400px">
+
+        <table class="table">
+          <!--begin::Thead-->
+          <thead>
+            <tr>
+              <td class="m-widget11__label">Status</td>
+              <td class="m-widget11__app">Address</td>
+              <td class="m-widget11__sales">Received</td>
+              <td class="m-widget11__price">Transmitted</td>
+              <td class="m-widget11__total m--align-right">Last Connection</td>
+            </tr>
+          </thead>
+          <!--end::Thead-->
+          <!--begin::Tbody-->
+          <tbody>
+            {{#each ../peers}}
+            <tr>
+              <td>
+                {{#if @first}}
+                <span class="m-badge m-badge--danger m-badge--wide">Inactive</span>
+                {{else}}
+                <span class="m-badge m-badge--success m-badge--wide">Active</span>
+                {{/if}}
+              </td>
+              <td>
+                <span class="m-widget11__title">{{this.address}}</span>
+              </td>
+              <td>{{this.rx}}</td>
+              <td>{{this.tx}}</td>
+              <td class="m--align-right m--font-brand">{{this.last_handshake}}</td>
+            </tr>
+            {{/each}}
+          </tbody>
+          <!--end::Tbody-->
+        </table>
+
+        <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+          <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+        </div>
+        <div class="ps__rail-y" style="top: 0px; right: 4px;">
+          <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+
+</div>

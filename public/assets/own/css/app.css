@@ -1,0 +1,60 @@
+/* General custom styles and helpers */
+
+.server-status-icon {
+  width: 24px;
+  margin-right: 1.2rem;
+}
+
+.server-subtitle {
+  font-weight: normal;
+  margin-left: 6px;
+}
+
+.m-widget4__img--pic img {
+  width: 2rem !important;
+}
+
+/* Styles for the image thumbnails sitewide */
+
+.symbol.symbol-80>img,
+.symbol.symbol-150>img,
+.symbol.symbol-40>img {
+  object-fit: cover;
+}
+
+.userpics img {
+  object-fit: contain !important;
+}
+
+/* Adjustements for the select2 component inside repeaters */
+
+/* Fix for the side menu layout bug */
+
+#m_ver_menu {
+  overflow: visible !important;
+}
+
+.no-after::before,
+.no-after::after {
+  content: none !important;
+}
+
+/* Responsive image for the landing page */
+
+.m-login__logo img {
+  max-width: 100%;
+  height: 260px;
+}
+
+@media (min-width: 1200px) {
+  .max-symbol > img {
+  width: 300px !important;
+  height: 300px !important;
+  max-width: none !important;
+  }
+}
+
+/* Fullwidth image modals */
+
+/* Custom switch styles */
+
