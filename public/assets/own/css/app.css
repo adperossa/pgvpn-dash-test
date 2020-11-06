@@ -14,6 +14,10 @@
   width: 2rem !important;
 }
 
+.m-widget4__ext:not(:last-child) {
+  padding-right: 10px;
+}
+
 /* Styles for the image thumbnails sitewide */
 
 .symbol.symbol-80>img,
